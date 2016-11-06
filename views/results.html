@@ -1,0 +1,15 @@
+<html>
+    <body>
+        <table>
+        <% for(var i=0; i < data.length; i++) { %>
+            <tr>
+                <td><img src="<%= data[i].thumbnail %>"></td>
+                <td><a href="<%= data[i].href %>"><%= data[i].title %></a></td>
+                <td><%= data[i].ingredients %></td>
+            </tr>
+        <% } %>
+        </table>
+        <br>
+        <a href = "/">Try again!</a>
+   </body>
+</html>
