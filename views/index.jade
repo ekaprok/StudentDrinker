@@ -1,0 +1,14 @@
+html
+    head
+        link(href='/stylesheets/style.css', rel='stylesheet')
+    body
+        div#wrapper
+            div.container
+                form(method='POST')
+                    | Ingredients: 
+                    input(type='text', name='ingredients')
+                    br
+                    input(type='submit', value='Submit')
+
+            div.right
+                h3 drinkr

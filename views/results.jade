@@ -1,0 +1,12 @@
+html
+    head
+        link(href='/stylesheets/style.css', rel='stylesheet')
+    body
+
+    - for (var i = 0; i < data.length; i++)
+        div
+            div
+                img(src=data[i].thumbnail)
+            div 
+                a(href=data[i].href)= data[i].title
+            div= data[i].ingredients
