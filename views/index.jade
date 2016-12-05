@@ -5,10 +5,10 @@ html
         div#wrapper
             div.container
                 form(method='POST')
-                    | Ingredients: 
-                    input(type='text', name='ingredients')
+                    | Ingredients:
                     br
-                    input(type='submit', value='Submit')
+                    input(type='text', name='ingredients', class="search")
+                    input(type='submit', value='search', class="button")
 
             div.right
-                h3 drinkr
+                p#name drinkr
