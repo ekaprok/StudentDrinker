@@ -89,14 +89,15 @@ router.get('/recipes', function(req, res, next) {
 });
 
 /* ADD A RECIPE TO THE USER'S COLLECTION */
-router.post('/recipe/:recipe_id', function(req, res, next) {
+router.post('/:recipe_id', function(req, res, next) {
   recipeCollection.findOne({ owner: req.user._id }, (err, collection) => {
     collection.items.push({
       item: req.params.recipe_id
     });
 
     collection.save().then( () => {
-      res.send(collection.items);
+      //res.send(collection.items);
+      res.redirect('/')
     }).catch( (e) => {
       return next(e);
     });
@@ -151,7 +152,7 @@ router.get('/mostpopular', function(req, res, next) {
   var promise = Recipe.find().sort({ numLikes: 'desc' }).limit(2).exec();
   promise.then( (recipes) => {
     console.log(recipes);
-    res.send(recipes);
+    res.render('mostpopular.jade', {data: recipes});
   }).catch( (e) => {
     console.log(e);
   });

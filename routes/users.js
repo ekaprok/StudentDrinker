@@ -41,6 +41,7 @@ router.get('/auth/facebook/callback',
 
 
 router.get('/profile', (req, res) => {
+  if (req.user) {
   recipeCollection
     .findOne({ owner: req.user._id })
     .populate('items.item')
@@ -51,6 +52,9 @@ router.get('/profile', (req, res) => {
         data: foundRecipes
       });
     });
+  } else {
+    return res.redirect('/');
+  };
 });
 
 router.get('/logout', function(req, res, next) {
