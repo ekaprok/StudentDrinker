@@ -32,7 +32,7 @@ html
                                 a(href=data[i].href)= data[i].title
                             td= data[i].ingredients
                             td
-                                a(href="/add_like/" + data[i]._id)= data[i].numLikes
+                                a(href="/add_like/" + data[i]._id, method="post")= data[i].numLikes
 
 
             div.right

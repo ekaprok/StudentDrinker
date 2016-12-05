@@ -23,8 +23,7 @@ html
                         td.ingredients
                             p ingredients
                         td
-                            p likes
-                        td
+
 
 
                     - for (var i = 0; i < data.length; i++)
@@ -35,9 +34,9 @@ html
                                 a(href=data[i].href)= data[i].title
                             td= data[i].ingredients
                             td
-                                a(href="/add_like/" + data[i]._id)= data[i].numLikes
-                            td
-                                a(href="/" + data[i]._id) add
+                                form(method="post", action="/recipe/" + data[i]._id)
+                                    input(type="hidden", name="_id", value=data[i]._id)
+                                    input(type='submit', name='', value='add', class="smallbutton")
 
 
             div.right

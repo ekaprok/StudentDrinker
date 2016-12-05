@@ -82,22 +82,28 @@ router.get('/recipes', function(req, res, next) {
     .populate('items.item')
     .exec(function(err, foundRecipes) {
       if (err) return next(err);
-      res.render('../views/recipes.html', {
+      res.render('../views/recipes.jade', {
         data: foundRecipes
       });
     });
 });
 
 /* ADD A RECIPE TO THE USER'S COLLECTION */
-router.post('/:recipe_id', function(req, res, next) {
-  recipeCollection.findOne({ owner: req.user._id }, (err, collection) => {
+router.post('/recipe/:recipe_id', function(req, res, next) {
+  console.log(req.user);
+  recipeCollection.findOne({ owner: req.user._id }, (err, collection = []) => {
+    if (collection.length == 0) {
+      collection.items = []
+    }
+
     collection.items.push({
       item: req.params.recipe_id
     });
 
     collection.save().then( () => {
       //res.send(collection.items);
-      res.redirect('/')
+
+      res.render('index')
     }).catch( (e) => {
       return next(e);
     });

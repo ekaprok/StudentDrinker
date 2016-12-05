@@ -22,8 +22,7 @@ html
                             p name
                         td.ingredients
                             p ingredients
-                        td
-                            p likes
+                            
                     - for (var i = 0; i < data.items.length; i++)
                         - for (var j = 0; j < data.items.length; j++)
                             tr
@@ -32,6 +31,5 @@ html
                                 td.link
                                     a(href=data.items[i].item.href)= data.items[i].item.title
                                 td.ingredients= data.items[i].item.ingredients
-                                td= data.items[i].item.numLikes
             div.right
                 p#name drinkr
