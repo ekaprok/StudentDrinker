@@ -65,37 +65,37 @@ a:hover {
 }
 
 .search {
-                padding:8px 15px;
-                background:rgba(50, 50, 50, 0.2);
-                border:0px solid #bbbbbb;
-		width:400px;
+        padding:8px 15px;
+        background:rgba(50, 50, 50, 0.2);
+        border:0px solid #bbbbbb;
+	width:400px;
 }
 .button {
-                position:relative;
-                padding:6px 15px;
-                left:-8px;
-                border:2px solid #bbbbbb;
-                background-color:#bbbbbb;
-                color:#fafafa;
-		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 	
+        position:relative;
+        padding:6px 15px;
+        left:-8px;
+        border:2px solid #bbbbbb;
+        background-color:#bbbbbb;
+        color:#fafafa;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 	
 }
 .button:hover  {
-                background-color:#c4c4c4;
-		border:2px solid #c4c4c4;
+        background-color:#c4c4c4;
+	border:2px solid #c4c4c4;
 }
 
 .button {
-                position:relative;
-                padding:6px 15px;
-                left:-8px;
-                border:2px solid #bbbbbb;
-                background-color:#bbbbbb;
-                color:#fafafa;
-		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 	
+        position:relative;
+        padding:6px 15px;
+        left:-8px;
+        border:2px solid #bbbbbb;
+        background-color:#bbbbbb;
+        color:#fafafa;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 	
 }
 .button:hover  {
-                background-color:#c4c4c4;
-		border:2px solid #c4c4c4;
+        background-color:#c4c4c4;
+	border:2px solid #c4c4c4;
 }
 
 
@@ -109,8 +109,8 @@ a:hover {
 		
 }
 .smallbutton:hover  {
-                background-color:#c4c4c4;
-		border:2px solid #c4c4c4;
+        background-color:#c4c4c4;
+	border:2px solid #c4c4c4;
 }
 
 
@@ -118,8 +118,8 @@ a:hover {
 
 
 img {
-    max-width: 100%;
-    height: auto;
+    	max-width: 100%;
+    	height: auto;
 }
 
 .thumbnail {
