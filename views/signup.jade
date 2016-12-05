@@ -1,0 +1,31 @@
+html
+    head
+        link(href='/stylesheets/style.css', rel='stylesheet')
+    body
+        div#wrapper
+            div.container
+                p.title Sign Up
+
+                form(method='post')
+                    input(type='text', name='firstName', placeholder='first name', class="search")
+                    br
+                    input(type='text', name='lastName', placeholder='first name', class="search")
+                    br
+                    input(type='text', name='email', placeholder='email', class="search")
+                    br
+                    input(type='password', name='password', placeholder='password', class="search")
+                    br
+                    input(type='submit', name='', value='submit', class="widebutton")
+
+                br
+                a(href="/") Home  
+                ||  
+                a(href="/profile") Profile  
+                ||  
+                a(href="/login") Login  
+                ||  
+                a(href="/logout") Logout  
+
+
+            div.right
+                p#name drinkr

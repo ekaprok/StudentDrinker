@@ -4,11 +4,22 @@ html
     body
         div#wrapper
             div.container
+                p.title Welcome!
+
                 form(action="/search" method='POST')
-                    | Ingredients:
+                    | Search by ingredients:
                     br
                     input(type='text', name='ingredients', class="search")
                     input(type='submit', value='search', class="button")
+
+                br
+                a(href="/profile") Profile  
+                ||  
+                a(href="/login") Login  
+                ||  
+                a(href="/logout") Logout  
+                ||  
+                a(href="/signup") Sign Up
 
             div.right
                 p#name drinkr

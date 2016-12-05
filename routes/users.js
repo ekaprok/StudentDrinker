@@ -10,6 +10,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const router = express.Router();
 const User = require('../models/user');
+const Recipe = require('../models/recipe');
 const recipeCollection = require('../models/recipes');
 const passport = require('passport');
 const async = require('async');
@@ -22,14 +23,7 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 ROUTS
 ****/
 router.get('/signup', (req, res, next) => {
-  var html = '<form method="post">' +
-                '<input type="text" name="firstName" placeholder="First Name">' +
-                '<input type="text" name="lastName" placeholder="Last Name">' +
-                '<input type="text" name="email" placeholder="email">' +
-                '<input type="text" name="password" placeholder="password">' +
-                '<input type="submit" name="" value="submit">' +
-             '</form>';
-  res.send(html);
+  res.render("signup.jade");
 });
 
 router.get('/login', (req, res) => {
@@ -38,13 +32,7 @@ router.get('/login', (req, res) => {
       console.log("already logged in")
       return res.redirect('/');
   }
-  var html = '<form method="post" action="/login">' +
-                '<input type="email" name="email" placeholder="email">' +
-                '<input type="text" name="password" placeholder="password">' +
-                '<input type="submit" name="" value="submit">' +
-             '</form>' +
-             '<a href="/auth/facebook" class=""><span class=""></span> Login With Facebook</a>';
-  res.send(html);
+  res.render("login.jade")
 });
 
 router.get('/auth/facebook/callback',
@@ -53,16 +41,16 @@ router.get('/auth/facebook/callback',
 
 
 router.get('/profile', (req, res) => {
-  User.findOne({ _id: req.user._id }, function(err, user) {
-    if (err) return next(err);
-    /*
-    !!! CAN GET USER'S CREDENTIALS FROM HERE (user)
-    res.render('index', { user: user });
-    */
-    console.log(user);
-    res.json(user.firstName);
-    res.json(user.facebook.email);
-  });
+  recipeCollection
+    .findOne({ owner: req.user._id })
+    .populate('items.item')
+    .exec(function(err, foundRecipes) {
+      if (err) return next(err);
+      console.log(foundRecipes)
+      res.render('profile', {
+        data: foundRecipes
+      });
+    });
 });
 
 router.get('/logout', function(req, res, next) {

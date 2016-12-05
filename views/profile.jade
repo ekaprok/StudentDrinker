@@ -1,0 +1,37 @@
+
+html
+    head
+        link(href='/stylesheets/style.css', rel='stylesheet')
+    body
+        div#wrapper
+            div.container
+                p.title Profile
+
+                a(href="/profile") Profile  
+                ||  
+                a(href="/login") Login  
+                ||  
+                a(href="/logout") Logout  
+                ||  
+                a(href="/signup") Sign Up
+                p.subtitle Your recipes
+                table
+                    tr
+                        td.thumbnail
+                        td.link
+                            p name
+                        td.ingredients
+                            p ingredients
+                        td
+                            p likes
+                    - for (var i = 0; i < data.items.length; i++)
+                        - for (var j = 0; j < data.items.length; j++)
+                            tr
+                                td.thumbnail
+                                    img(src=data.items[i].item.thumbnail)
+                                td.link
+                                    a(href=data.items[i].item.href)= data.items[i].item.title
+                                td.ingredients= data.items[i].item.ingredients
+                                td= data.items[i].item.numLikes
+            div.right
+                p#name drinkr

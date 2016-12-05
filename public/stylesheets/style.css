@@ -3,6 +3,12 @@ body {
 }
 a {
   	color: #00b7ff;
+	text-decoration: none;
+}
+
+a:hover {
+  	color: #008cc4;
+
 }
 
 #wrapper {
@@ -11,24 +17,43 @@ a {
 	height: 500px;
 }
 
+.title {
+	font-size: 70px;
+	padding-bottom: 0px;
+	margin-botton: 0px;
+	margin-top: 3px;
+	line-height: 50px;
+}
+
+.subtitle {
+	font-size: 50px;
+	padding-bottom: 0px;
+	margin-botton: 0px;
+	line-height: 30px;
+}
+
 .container {
 	height: 100%;
 	float: left;
-	width: 40%;
+	width: 65%;
 	padding-left:30px;
 	overflow-y: scroll;
+	overflow-x: scroll;
+	margin-right:0px;
+	text-align:center;
 }
 
 .right {
 	height: 100%;
 	border: 0px;
-	padding-left: 50px;
+	padding-left: 30px;
 	padding-top: 320px;
 	float: right;
-	width: 50%;
+	width: 30%;
 	background-image: url(pexels-photo-66636.jpg);
 	background-size: cover;
 	filter: blur(0px);
+	margin-left: 0px;
 
 }
 
@@ -60,19 +85,39 @@ a {
 }
 
 
+.widebutton {
+	position:relative;
+        padding:6px 15px;
+        border:2px solid #bbbbbb;
+        background-color:#bbbbbb;
+        color:#fafafa;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	width:400px;	
+		
+}
+.widebutton:hover  {
+                background-color:#c4c4c4;
+		border:2px solid #c4c4c4;
+}
+
+
 img {
     max-width: 100%;
     height: auto;
 }
 
 .thumbnail {
-    width: 50px;
-    min-height: 50px;
-    max-height: auto;
-    margin: 3px;
-    padding: 3px;
+    	width: 50px;
+    	height: 40px;
+    	margin: 3px;
+    	padding: 3px;
+	border-right: 1px #00b7ff;
 }
 
 .link {
 	min-width: 300px;
+	border-right: 2px #00b7ff;
 }
+
+.ingredients {
+	min-width: 300px;

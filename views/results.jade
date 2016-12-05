@@ -5,7 +5,16 @@ html
     body
         div#wrapper
             div.container
+                a(href="/") Home
                 table
+                    tr
+                        td.thumbnail
+                        td.link
+                            p name
+                        td.ingredients
+                            p ingredients
+                        td
+                            p likes
                     - for (var i = 0; i < data.length; i++)
                         tr
                             td.thumbnail
@@ -13,7 +22,6 @@ html
                             td.link 
                                 a(href=data[i].href)= data[i].title
                             td= data[i].ingredients
-                a(href="/") Try again!
 
 
             div.right
