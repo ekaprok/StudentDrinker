@@ -26,7 +26,7 @@ a:hover {
 }
 
 .subtitle {
-	font-size: 50px;
+	font-size: 40px;
 	padding-bottom: 0px;
 	margin-botton: 0px;
 	line-height: 30px;
@@ -120,4 +120,4 @@ img {
 }
 
 .ingredients {
-	min-width: 300px;
+	min-width: 250px;

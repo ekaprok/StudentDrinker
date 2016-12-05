@@ -4,7 +4,14 @@ html
     body
         div#wrapper
             div.container
-                a(href="/") Home
+                p.title Login
+                a(href="/") Home  
+                ||  
+                a(href="/profile") Profile  
+                ||  
+                a(href="/logout") Logout  
+                ||  
+                a(href="/signup") Sign Up
                 br
                 br
                 form(method='post', action='/login')
@@ -14,7 +21,6 @@ html
                     br
                     input(type='submit', name='', value='submit', class="widebutton")
                 a(href='/auth/facebook') Login with Facebook
-                a(href="/signup") Sign Up
 
 
             div.right
