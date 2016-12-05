@@ -3,6 +3,7 @@
         <table>
         <% for(var i=0; i < data.length; i++) { %>
             <tr>
+                <a href="/product/<%= products[i]._id %>">
                 <td><img src="<%= data[i].thumbnail %>"></td>
                 <td><a href="<%= data[i].href %>"><%= data[i].title %></a></td>
                 <td><%= data[i].ingredients %></td>
