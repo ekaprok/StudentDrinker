@@ -33,8 +33,8 @@ DATABASE MANAGEMENT
 *******************/
 
 /* ADD ALL RECIPES FROM THE API TO LOCAL DATABASE */
-router.post('/add', function(req, res){
-  var ingredients = 'wine';
+router.post('/addall', function(req, res){
+  var ingredients = 'water';
   var url = 'http://www.recipepuppy.com/api/?i=' + ingredients;
   http.get(url, function(res2){
     var body = '';
@@ -72,7 +72,7 @@ router.post('/add', function(req, res){
 /* SEARCH FOR A SPECIFIC RECIPE */
 router.post('/search', function(req, res){
   Recipe.find({ingredients: req.body.ingredients}).then( (recipes) => {
-    res.send(recipes);
+    res.render("../views/results.jade", {data: recipes});
   }).catch( (e) => {
     console.log(e);
   });
@@ -183,6 +183,29 @@ router.get('/recommend',  (req, res, next) => {
     console.log(e);
   });
 });
+
+
+/* ADD A RECIPE INTO THE DATABASE */
+router.post('/add', function(req, res){
+  recipe.title = req.body.title;
+  recipe.ingredients = req.body.ingredients;
+  recipe.instruction = req.body.instructions;
+  recipe.href = req.body.instructions;
+  recipe.thumbnail = req.body.thumbnail;
+
+  // check if the recipe is unique
+  Recipe.findOne({title: item.title}).then((existingTitle) => {
+    if (existingTitle) {
+      console.log('This recipe already exists');
+    }
+    else {
+      recipe.href = item.href;
+      recipe.ingredients = item.ingredients.split(',').map(Function.prototype.call, String.prototype.trim);
+      recipe.thumbnail = item.thumbnail;
+      recipe.save();
+    }}).catch((e) => {
+      console.log(e);
+  });
 
 
 module.exports = router
