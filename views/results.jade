@@ -5,7 +5,18 @@ html
     body
         div#wrapper
             div.container
-                a(href="/") Home
+                p.title Profile
+                a(href="/") Home  
+                ||  
+                a(href="/profile") Profile  
+                ||  
+                a(href="/login") Login  
+                ||  
+                a(href="/logout") Logout  
+                ||  
+                a(href="/signup") Sign Up
+
+                p.subtitle Your recipes
                 table
                     tr
                         td.thumbnail
@@ -22,6 +33,7 @@ html
                             td.link 
                                 a(href=data[i].href)= data[i].title
                             td= data[i].ingredients
+                            td= data[i].numLikes
 
 
             div.right

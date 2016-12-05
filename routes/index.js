@@ -67,6 +67,7 @@ router.post('/addall', function(req, res){
 /* SEARCH FOR A SPECIFIC RECIPE */
 router.post('/search', function(req, res){
   Recipe.find({ingredients: req.body.ingredients}).then( (recipes) => {
+    console.log(recipes)
     res.render("../views/results.jade", {data: recipes});
   }).catch( (e) => {
     console.log(e);
