@@ -5,12 +5,18 @@ router.get('/login', function(req, res) {
 });
   pass {errors} via something in the template
 */
-var express = require('express');
-var router = express.Router();
-var User = require('../models/user');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var bcrypt = require('bcrypt-nodejs');
+const express = require('express');
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+const router = express.Router();
+const User = require('../models/user');
+const recipeCollection = require('../models/recipes');
+const passport = require('passport');
+const async = require('async');
+const LocalStrategy = require('passport-local').Strategy;
+const bcrypt = require('bcrypt-nodejs');
+const configAuth = require('./auth');
+const FacebookStrategy = require('passport-facebook').Strategy;
 
 /****
 ROUTS
@@ -36,9 +42,15 @@ router.get('/login', (req, res) => {
                 '<input type="email" name="email" placeholder="email">' +
                 '<input type="text" name="password" placeholder="password">' +
                 '<input type="submit" name="" value="submit">' +
-             '</form>';
+             '</form>' +
+             '<a href="/auth/facebook" class=""><span class=""></span> Login With Facebook</a>';
   res.send(html);
 });
+
+router.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { successRedirect: '/profile',
+                                      failureRedirect: '/login' }));
+
 
 router.get('/profile', (req, res) => {
   User.findOne({ _id: req.user._id }, function(err, user) {
@@ -49,6 +61,7 @@ router.get('/profile', (req, res) => {
     */
     console.log(user);
     res.json(user.firstName);
+    res.json(user.facebook.email);
   });
 });
 
@@ -62,29 +75,45 @@ router.get('/logout', function(req, res, next) {
 REGISTRATION
 ************/
 router.post('/signup', function(req, res, next) {
-    var user = new User();
 
-    // use body parser to retrieve the data
-    user.firstName = req.body.firstName;
-    user.lastName = req.body.lastName;
-    user.email = req.body.email;
-    user.password = req.body.password;
+  async.waterfall([
+    function(callback) {
+      var user = new User();
 
-    // Validation: check if the email is unique; if it is, add a user into the database
-    User.findOne({ email: req.body.email }, function(err, existingUser) {
+      user.firstName = req.body.firstName;
+      user.lastName = req.body.lastName;
+      user.email = req.body.email;
+      user.password = req.body.password;
 
+      User.findOne({email: req.body.email}).then((existingUser) => {
         if (existingUser) {
-            console.log(req.body.email, 'already exists');
-            req.flash('errors', 'Account with that email address already exists!');
-            return res.redirect('/signup');
-        } else {
-            user.save(function(err, user) {
-                if (err) return next(err);
-                console.log("New user has been created");
-                return res.redirect('/');
-            });
+          req.flash('errors', 'Account with that email address already exists');
+          return res.redirect('/signup');
         }
-    });
+        else {
+          user.save().then( (user) => {
+            callback(null, user);
+          }).catch( (e) => {
+            return next(e);
+          });
+        }
+      }).catch((e) => {
+          console.log(e);
+      });
+    },
+
+    function(user) {
+      var collection = new recipeCollection();
+      collection.owner = user._id;
+      collection.save(function(err) {
+        if (err) return next(err);
+        req.logIn(user, function(err) {
+          if (err) return next(err);
+          res.redirect('/');
+        });
+      });
+    }
+  ]);
 });
 
 
@@ -155,5 +184,50 @@ router.post('/edit-profile', function(req, res, next) {
     });
   });
 });
+
+
+/*******
+FACEBOOK
+********/
+router.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}));
+
+passport.use(new FacebookStrategy({
+    clientID: configAuth.facebookAuth.clientID,
+    clientSecret: configAuth.facebookAuth.clientSecret,
+    callbackURL: configAuth.facebookAuth.callbackURL
+  },
+  function(accessToken, refreshToken, profile, done) {
+    	process.nextTick(function(){
+    		User.findOne({'facebook.id': profile.id}, function(err, user){
+    			if(err)
+    				return done(err);
+    			if(user)
+    				return done(null, user);
+    			else {
+    				var newUser = new User();
+    				newUser.facebook.id = profile.id;
+    				newUser.facebook.token = accessToken;
+    				newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
+    				newUser.facebook.email = profile.emails[0].value;
+
+    				newUser.save(function(err){
+    					if(err)
+    						throw err;
+    					return done(null, newUser);
+    				})
+    				console.log(profile);
+    			}
+    		});
+    	});
+    }
+));
+
+
+
+
+
+
+
+
 
 module.exports = router;

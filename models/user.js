@@ -1,4 +1,5 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
 //Lib to help you hash passwords;
 //a safe way to store user passwords in your Node.js application
@@ -12,10 +13,12 @@ var UserSchema = new mongoose.Schema({
   password: String,
   firstName: {type: String, default: ''},
   lastName: {type: String, default: ''},
-  recipes: [{
-    date: Date
-    // item:
-  }]
+  facebook: {
+		id: String,
+		token: String,
+		email: String,
+		name: String
+	}
 });
 
 /*
