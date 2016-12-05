@@ -1,6 +1,6 @@
-const express = require('express');
-const http = require('http');
-const router = express();
+var express = require('express');
+var http = require('http');
+var router = express();
 
 const User = require('../models/user');
 const Recipe = require('../models/recipe');
@@ -9,24 +9,19 @@ var mongoose = require('mongoose');
 
 
 //code from http://code.runnable.com/U0sU598vXio2uD-1/example-reading-form-input-with-express-4-0-and-body-parser-for-node-js
-var bodyParser = require('body-parser');
-router.use(bodyParser());
+// var bodyParser = require('body-parser');
+// router.use(bodyParser());
 
-router.engine('html', require('ejs').renderFile);
-router.set('view engine', 'ejs');
+// router.engine('html', require('ejs').renderFile);
+// router.set('view engine', 'ejs');
 
 
 
 router.get('/', function(req, res){
-  var html = '<form action="/" method="post">' +
-               'Enter your ingredients:' +
-               '<input type="text" name="ingredients" placeholder="..." />' +
-               '<br>' +
-               '<button type="submit">Submit</button>' +
-            '</form>';
-
-  res.send(html);
+  res.render('index', {title: 'Express'});
 });
+
+
 
 /******************
 DATABASE MANAGEMENT
@@ -185,7 +180,7 @@ router.get('/recommend',  (req, res, next) => {
 });
 
 
-/* ADD A RECIPE INTO THE DATABASE */
+/* ADD A RECIPE INTO THE DATABASE 
 router.post('/add', function(req, res){
   recipe.title = req.body.title;
   recipe.ingredients = req.body.ingredients;
@@ -207,5 +202,5 @@ router.post('/add', function(req, res){
       console.log(e);
   });
 
-
-module.exports = router
+*/
+module.exports = router;

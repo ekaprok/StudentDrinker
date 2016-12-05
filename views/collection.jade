@@ -1,0 +1,20 @@
+
+html
+    head
+        link(href='/stylesheets/style.css', rel='stylesheet')
+    body
+        div#wrapper
+            div.container
+                table
+                    - for (var i = 0; i < data.length; i++)
+                        tr
+                            td.thumbnail
+                                img(src=data[i].thumbnail)
+                            td.link 
+                                a(href=data[i].href)= data[i].title
+                            td= data[i].ingredients
+                a(href="/") Try again!
+
+
+            div.right
+                p#name drinkr
