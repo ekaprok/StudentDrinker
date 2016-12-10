@@ -122,7 +122,7 @@ router.post('/remove', function(req, res, next) {
 });
 
 /* LIKE FUNCTIONALITY */
-router.post('/add_like', (req, res, next) => {
+router.post('/add_like/:recipe_id', (req, res, next) => {
   var recipe_id = req.body.recipe_id;
   var owner = String(req.user._id);
   console.log(owner);
