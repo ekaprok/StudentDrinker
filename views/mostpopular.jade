@@ -3,20 +3,29 @@ html
     head
         link(href='/stylesheets/style.css', rel='stylesheet')
     body
+      div#navbar
+        ul
+          if (user)
+            li.navlink
+              a(href="/profile") Hi, #{userName}
+            li.navlink
+              a(href="/profile") Profile
+            li.navlink
+              a(href="/logout") Logout
+          else
+            li.navlinkRight
+              a(href="/login") Login
+            li.navlinkRight
+              a(href="/signup") Sign Up
+          li.navlink
+            a(href='/mostpopular') Most Popular
+          li.navlink
+            a(href='/faq') FAQ
+
         div#wrapper
             div.container
                 p.title Most Popular
-                a(href="/") Home  
-                ||  
-                a(href="/profile") Profile  
-                ||  
-                a(href='/faq') FAQ  
-                ||  
-                a(href="/login") Login  
-                ||  
-                a(href="/logout") Logout  
-                ||  
-                a(href="/signup") Sign Up
+                
                 table
                     tr
                         td.thumbnail
@@ -33,7 +42,7 @@ html
                         tr
                             td.thumbnail
                                 img(src=data[i].thumbnail)
-                            td.link 
+                            td.link
                                 a(href=data[i].href)= data[i].title
                             td= data[i].ingredients
                             td
@@ -44,7 +53,7 @@ html
                                 form(method="post", action="/add_like/" + data[i]._id)
                                     input(type="hidden", name="_id", value=data[i]._id)
                                     input(type='submit', name='', value='like', class="smallbutton")
-                                        
+
 
 
             div.right

@@ -7,18 +7,17 @@ const Recipe = require('../models/recipe');
 const recipeCollection = require('../models/recipes');
 var mongoose = require('mongoose');
 
-
-//code from http://code.runnable.com/U0sU598vXio2uD-1/example-reading-form-input-with-express-4-0-and-body-parser-for-node-js
-// var bodyParser = require('body-parser');
-// router.use(bodyParser());
-
-// router.engine('html', require('ejs').renderFile);
-// router.set('view engine', 'ejs');
-
-
-
 router.get('/', function(req, res){
-  res.render('index', {title: 'Express'});
+  // console.log(req.user.firstName);
+  if (req.user) {
+  res.render('index', {
+    userName: req.user.firstName,
+    user: req.user
+    });
+  }
+  else {
+    res.render('index')
+  }
 });
 
 router.get('/faq', function(req, res){
@@ -191,7 +190,7 @@ router.get('/recommended',  (req, res, next) => {
 });
 
 
-/* ADD A RECIPE INTO THE DATABASE 
+/* ADD A RECIPE INTO THE DATABASE
 router.post('/add', function(req, res){
   recipe.title = req.body.title;
   recipe.ingredients = req.body.ingredients;
