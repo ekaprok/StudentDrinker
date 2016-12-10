@@ -21,7 +21,9 @@ router.get('/', function(req, res){
   res.render('index', {title: 'Express'});
 });
 
-
+router.get('/faq', function(req, res){
+  res.render('faq.jade');
+})
 
 /******************
 DATABASE MANAGEMENT
@@ -167,7 +169,7 @@ router.get('/mostpopular', function(req, res, next) {
 
 /* RECOMMENDATIONS TO THE USER BY INGREDIENTS */
 router.get('/recommended',  (req, res, next) => {
-  var owner = String(req.user._id);
+  var owner = req.user._id;
   var favorite_recipe = Recipe.find().sort({ numLikes: 'desc' }).limit(1).exec();
   favorite_recipe.then( (recipe) => {
     var ingredient = recipe[0].ingredients[0];

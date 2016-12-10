@@ -5,6 +5,13 @@ html
         div#wrapper
             div.container
                 p.title Welcome!
+                p.text.
+                    We are a drinking recipes website for people who are of legal age to drink and are looking for something exciting to try! All you need to do is type in a name of an ingredient or name of a drink in the search bar on the home page to get started! The rest is on us! 
+                br
+                p.text.
+                    Started by a group of college students studying computer science in 2016, Drinkr is a leading web service that supplies users with an infinite list of alcoholic drinks’ recipes. Our goal is to make life easier for people who want to make new drinks with ingredients they have on hand or going to get in order to make a drink of their desire. We encourage you to try our service to discover, make, and taste new drinks! 
+                br
+
 
                 form(action="/search" method='POST')
                     | Search by ingredients:
@@ -16,6 +23,8 @@ html
                 a(href="/profile") Profile  
                 ||  
                 a(href='/mostpopular') Most Popular  
+                ||  
+                a(href='/faq') FAQ  
                 ||  
                 a(href="/login") Login  
                 ||  
