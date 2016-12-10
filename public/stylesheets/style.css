@@ -1,5 +1,5 @@
 body {
-  	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 a {
   	color: #00b7ff;
@@ -57,7 +57,7 @@ a:hover {
 
 }
 
-#name {	
+#name {
 	font-size: 80px;
 
 	color: #ffffff; /* White */
@@ -77,7 +77,7 @@ a:hover {
         border:2px solid #bbbbbb;
         background-color:#bbbbbb;
         color:#fafafa;
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 	
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 .button:hover  {
         background-color:#c4c4c4;
@@ -91,7 +91,7 @@ a:hover {
         border:2px solid #bbbbbb;
         background-color:#bbbbbb;
         color:#fafafa;
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 	
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 .button:hover  {
         background-color:#c4c4c4;
@@ -105,8 +105,8 @@ a:hover {
         border:2px solid #bbbbbb;
         background-color:#bbbbbb;
         color:#fafafa;
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 	
-		
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
 }
 .smallbutton:hover  {
         background-color:#c4c4c4;
