@@ -1,10 +1,11 @@
+
 html
     head
         link(href='/stylesheets/style.css', rel='stylesheet')
     body
         div#wrapper
             div.container
-                p.title Most popular
+                p.title Most Popular
                 a(href="/") Home  
                 ||  
                 a(href="/profile") Profile  
@@ -14,7 +15,6 @@ html
                 a(href="/logout") Logout  
                 ||  
                 a(href="/signup") Sign Up
-
                 table
                     tr
                         td.thumbnail
@@ -23,7 +23,10 @@ html
                         td.ingredients
                             p ingredients
                         td
-                            p likes
+                        td
+
+
+
                     - for (var i = 0; i < data.length; i++)
                         tr
                             td.thumbnail
@@ -32,7 +35,14 @@ html
                                 a(href=data[i].href)= data[i].title
                             td= data[i].ingredients
                             td
-                                a(href="/add_like/" + data[i]._id, method="post")= data[i].numLikes
+                                form(method="post", action="/recipe/" + data[i]._id)
+                                    input(type="hidden", name="_id", value=data[i]._id)
+                                    input(type='submit', name='', value='add', class="smallbutton")
+                            td
+                                form(method="post", action="/add_like/" + data[i]._id)
+                                    input(type="hidden", name="_id", value=data[i]._id)
+                                    input(type='submit', name='', value='add', class="smallbutton")
+                                        
 
 
             div.right

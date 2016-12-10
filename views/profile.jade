@@ -24,7 +24,7 @@ html
                             p ingredients
                             
                     - for (var i = 0; i < data.items.length; i++)
-                        - for (var j = 0; j < data.items.length; j++)
+                        - for (var j = 0; j < data.items[i].length; j++)
                             tr
                                 td.thumbnail
                                     img(src=data.items[i].item.thumbnail)
