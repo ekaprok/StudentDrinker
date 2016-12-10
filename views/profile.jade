@@ -9,11 +9,16 @@ html
 
                 a(href="/") Home  
                 ||  
+                a(href='/mostpopular') Most Popular  
+                ||  
                 a(href="/login") Login  
                 ||  
                 a(href="/logout") Logout  
                 ||  
                 a(href="/signup") Sign Up
+                br
+                br
+                a(href="/recommended") Personal Recommendations
                 p.subtitle Your recipes
                 table
                     tr
@@ -24,12 +29,11 @@ html
                             p ingredients
                             
                     - for (var i = 0; i < data.items.length; i++)
-                        - for (var j = 0; j < data.items[i].length; j++)
-                            tr
-                                td.thumbnail
-                                    img(src=data.items[i].item.thumbnail)
-                                td.link
-                                    a(href=data.items[i].item.href)= data.items[i].item.title
-                                td.ingredients= data.items[i].item.ingredients
+                        tr
+                            td.thumbnail
+                                img(src=data.items[i].item.thumbnail)
+                            td.link
+                                a(href=data.items[i].item.href)= data.items[i].item.title
+                            td.ingredients= data.items[i].item.ingredients
             div.right
                 p#name drinkr

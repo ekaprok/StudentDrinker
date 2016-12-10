@@ -5,7 +5,7 @@ html
     body
         div#wrapper
             div.container
-                p.title Most Popular
+                p.title Recommended
                 a(href="/") Home  
                 ||  
                 a(href="/profile") Profile  
@@ -23,6 +23,8 @@ html
                         td.ingredients
                             p ingredients
                         td
+                            p likes
+                        td
                         td
 
 
@@ -34,6 +36,7 @@ html
                             td.link 
                                 a(href=data[i].href)= data[i].title
                             td= data[i].ingredients
+                            td= data[i].numLikes
                             td
                                 form(method="post", action="/recipe/" + data[i]._id)
                                     input(type="hidden", name="_id", value=data[i]._id)
@@ -42,7 +45,7 @@ html
                                 form(method="post", action="/add_like/" + data[i]._id)
                                     input(type="hidden", name="_id", value=data[i]._id)
                                     input(type='submit', name='', value='like', class="smallbutton")
-                                        
+
 
 
             div.right

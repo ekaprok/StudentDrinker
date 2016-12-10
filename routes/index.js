@@ -166,7 +166,7 @@ router.get('/mostpopular', function(req, res, next) {
 
 
 /* RECOMMENDATIONS TO THE USER BY INGREDIENTS */
-router.get('/recommend',  (req, res, next) => {
+router.get('/recommended',  (req, res, next) => {
   var owner = String(req.user._id);
   var favorite_recipe = Recipe.find().sort({ numLikes: 'desc' }).limit(1).exec();
   favorite_recipe.then( (recipe) => {
@@ -178,7 +178,8 @@ router.get('/recommend',  (req, res, next) => {
         random = Math.floor(Math.random() * results_length) + 1;
       }
       recommended = results[random];
-      res.send(recommended);
+      console.log(recommended)
+      res.render('recommended.jade', {data: recommended});
     }).catch( (e) => {
       console.log(e);
     });
