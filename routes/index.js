@@ -13,7 +13,7 @@ var oauth = require('./oauth');
 var forEach = require('async-foreach').forEach;
 
 router.post('/post', function(req, res) {
-console.log(req.body)
+
   // facebook groups
   var urls = [
     'https://graph.facebook.com/me/feed'
