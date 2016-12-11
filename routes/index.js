@@ -10,11 +10,11 @@ var mongoose = require('mongoose');
 router.get('/', function(req, res){
   // console.log(req.user.firstName);
   if (req.user) {
-  res.render('index', {
-    userName: req.user.firstName,
-    user: req.user
-    });
-  }
+    res.render('index', {
+      userName: req.user.firstName,
+      user: req.user
+      });
+    }
   else {
     res.render('index')
   }
@@ -69,7 +69,10 @@ router.post('/addall', function(req, res){
 router.post('/search', function(req, res){
   Recipe.find({ingredients: req.body.ingredients}).then( (recipes) => {
     console.log(recipes)
-    res.render("../views/results.jade", {data: recipes});
+    res.render("../views/results.jade", {
+      data: recipes,
+      user: req.user
+    });
   }).catch( (e) => {
     console.log(e);
   });
@@ -117,14 +120,14 @@ router.post('/remove', function(req, res, next) {
     collection.items.pull(req.body.item);
     collection.save(function(err, found) {
       if (err) return next(err);
-      res.send(collection.items);
+      res.render(collection.items);
     });
   });
 });
 
 /* LIKE FUNCTIONALITY */
 router.post('/add_like/:recipe_id', (req, res, next) => {
-  var recipe_id = req.body.recipe_id;
+  var recipe_id = req.params.recipe_id;
   var owner = String(req.user._id);
   console.log(owner);
   var isEl = false;
@@ -148,7 +151,7 @@ router.post('/add_like/:recipe_id', (req, res, next) => {
     }
     obj.save(function(err) {
       if (err) return next(err);
-      return res.json(obj);
+      return res.render('index');
     });
     console.log('num of likes: ' + obj.likes.length);
   });
