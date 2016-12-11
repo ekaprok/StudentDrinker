@@ -6,6 +6,33 @@ const User = require('../models/user');
 const Recipe = require('../models/recipe');
 const recipeCollection = require('../models/recipes');
 var mongoose = require('mongoose');
+//fb
+var api = require('./facebook');
+var oauth = require('./oauth');
+
+var forEach = require('async-foreach').forEach;
+
+router.post('/post', function(req, res) {
+console.log(req.body)
+  // facebook groups
+  var urls = [
+    'https://graph.facebook.com/me/feed'
+  ];
+
+  forEach(urls, function(item, index, arr) {
+    // Check to ensure user has a valid access_token
+    if (oauth.access_token) {
+      api.postMessage(index, item, oauth.access_token, req.body.title, res);
+      res.render('index');
+    } else {
+      console.log("Couldn't confirm that user was authenticated. Redirecting to /");
+    }
+
+  });
+});
+
+router.get('/loginfb', oauth.login);
+router.get('/callback', oauth.callback);
 
 router.get('/', function(req, res){
   // console.log(req.user.firstName);

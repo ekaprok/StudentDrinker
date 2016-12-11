@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+
+
 var session = require('express-session');
 // database for storing th esession
 var SessionStore = require('connect-mongo')(session);
@@ -17,6 +19,8 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+
 
 mongoose.connect('mongodb://team9:cs411@ds145667.mlab.com:45667/studentdrinker', (err) => {
   if (err) console.log(err);
@@ -69,4 +73,3 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
-

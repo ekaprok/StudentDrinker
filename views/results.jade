@@ -2,6 +2,26 @@
 html
     head
         link(href='/stylesheets/style.css', rel='stylesheet')
+
+        script(src='//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js')
+
+        script(type='text/javascript').
+          var url = '';
+          var w = '';
+          $(document).ready(function() {
+          $.get('/loginfb', function(data) {
+          url = data;
+          });
+          });
+          var interval = window.setInterval((function() {
+          if (w.closed) {
+          window.clearInterval(interval);
+          $('#fbpost').show();
+          $('#fb-login').hide();
+          $('h2').hide();
+          }
+          }),1000);
+
     body
       div#navbar
         ul
@@ -43,13 +63,18 @@ html
 
                     - for (var i = 0; i < data.length; i++)
                         tr
-                            td.thumbnail
-                                img(src=data[i].thumbnail)
-                            td.link
-                                a(href=data[i].href)= data[i].title
-                            td= data[i].ingredients
-                            td= data[i].numLikes
+                          td.thumbnail
+                              img(src=data[i].thumbnail)
+                          td.link
+                              a(href=data[i].href)= data[i].title
+                          td= data[i].ingredients
+                          td= data[i].numLikes
                             if (user)
+                              td
+                                button#fb-login(class="smallbutton", onclick="w = window.open(url, 'window', 'status=0,menubar=0,resizable=1');") Fbook
+                                form#fbpost(action="/post", method="post", style='display:none;')
+                                  input(type="hidden", name="title", value=data[i].title)
+                                  input(type='submit', name='submit', value='Share', class="smallbutton")
                               td
                                   form(method="post", action="/recipe/" + data[i]._id)
                                       input(type="hidden", name="_id", value=data[i]._id)
@@ -58,7 +83,6 @@ html
                                   form(method="post", action="/add_like/" + data[i]._id)
                                       input(type="hidden", name="_id", value=data[i]._id)
                                       input(type='submit', name='', value='like', class="smallbutton")
-
 
 
             div.right
