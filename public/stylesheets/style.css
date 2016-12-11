@@ -101,7 +101,7 @@ a:hover {
 
 .smallbutton {
 	position:relative;
-        padding:6px 15px;
+        padding:3px 10px;
         border:2px solid #bbbbbb;
         background-color:#bbbbbb;
         color:#fafafa;
@@ -159,7 +159,7 @@ img {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #999999;
 }
 
 .navlink {
@@ -189,3 +189,10 @@ img {
 .navlink .navLinkRight a:hover {
     background-color: #111;
 }
+
+.center {
+	vertical-align: center;
+}
+
+.bottom {
+	padding-top: 19px;
