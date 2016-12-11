@@ -36,8 +36,8 @@ html
                             p ingredients
                         td
                             p likes
-                        td
-                        td
+                        td.center
+                        td.center
 
 
 
@@ -47,14 +47,14 @@ html
                                 img(src=data[i].thumbnail)
                             td.link
                                 a(href=data[i].href)= data[i].title
-                            td= data[i].ingredients
-                            td= data[i].numLikes
+                            td.center= data[i].ingredients
+                            td.center= data[i].numLikes
                             if (user)
-                              td
+                              td.bottom
                                   form(method="post", action="/recipe/" + data[i]._id)
                                       input(type="hidden", name="_id", value=data[i]._id)
                                       input(type='submit', name='', value='add', class="smallbutton")
-                              td
+                              td.bottom
                                   form(method="post", action="/add_like/" + data[i]._id)
                                       input(type="hidden", name="_id", value=data[i]._id)
                                       input(type='submit', name='', value='like', class="smallbutton")

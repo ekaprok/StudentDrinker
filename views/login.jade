@@ -2,22 +2,30 @@ html
     head
         link(href='/stylesheets/style.css', rel='stylesheet')
     body
+        div#navbar
+            ul
+              if (user)
+                li.navlink
+                  a(href="/profile") Hi, #{userName}
+                li.navlink
+                  a(href="/profile") Profile
+                li.navlink
+                  a(href="/logout") Logout
+              else
+                li.navlinkRight
+                  a(href="/login") Login
+                li.navlinkRight
+                  a(href="/signup") Sign Up
+              li.navlink
+                a(href='/') Home
+              li.navlink
+                a(href='/mostpopular') Most Popular
+              li.navlink
+                a(href='/faq') FAQ
+
         div#wrapper
             div.container
                 p.title Login
-                a(href="/") Home
-                ||
-                a(href="/profile") Profile
-                ||
-                a(href='/faq') FAQ
-                ||
-                a(href='/mostpopular') Most Popular
-                ||
-                a(href="/logout") Logout  
-                ||
-                a(href="/signup") Sign Up
-                br
-                br
                 form(method='post', action='/login')
                     input(type='email', name='email', placeholder='email', class="search")
                     br
